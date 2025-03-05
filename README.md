@@ -17,11 +17,12 @@ We have built custom search, embed, and extract scrapers for 20+ different strea
 * tested on OSx and Ubuntu24
 
 ## Install
+* clone this repo `git clone https://github.com/toohotadmin/thflask`
+* change to thflask dir `cd thflask`
 * add `.env` file 
 ```
 MYSQL_ROOT=root_password
 RAPID_KEY=rapidapi_key
 ```
-* clone this repo `git clone https://github.com/toohotadmin/thflask`
 * run `bash install.sh`
 * connect browser to http://localhost:8000
