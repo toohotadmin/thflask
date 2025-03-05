@@ -173,7 +173,7 @@ $(function () {
             "modDetail":"nordDetail",
             "url":"https://go.nordvpn.net/aff_c?offer_id=15&aff_id=1322&aff_sub=toohot",
             "urltext":"Protect Yourself with a VPN",
-            "embed":"/video?url=/media/nordvpn5.mp4",
+            "embed":"/video?url=https://toohot.info/media/nordvpn5.mp4",
             "title":"Your Private information may be exposed!<br>Click the video to find out how to protect yourself!",
             "actor":"toohot.info"
         }
