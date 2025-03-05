@@ -25,4 +25,10 @@ MYSQL_ROOT=root_password
 RAPID_KEY=rapidapi_key
 ```
 * run `bash install.sh`
+
+## Usage
 * connect browser to http://localhost:8000
+* To add sites click 'Login'
+* login with `admin` and `your_mysql_root_password`
+* click 'Toggle' to search 20+ streaming sites
+* click 'View Video' and then 'Save' to save your video
