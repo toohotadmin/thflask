@@ -1,0 +1,32 @@
+CREATE DATABASE IF NOT EXISTS toohot;
+USE toohot;
+CREATE TABLE IF NOT EXISTS videos 
+(
+id int auto_increment primary key,
+embed varchar(500) NOT null UNIQUE,
+thumbnail varchar(500) NOT null UNIQUE,
+alt varchar(250),
+rank int DEFAULT 0,
+hide boolean,
+title varchar(500),
+site varchar(50),
+origin varchar(50),
+actor varchar(500),
+tags varchar(500),
+description varchar(1000),
+url varchar(500),
+status int(3) DEFAULT 0,
+updated datetime NOT null default NOW()
+);
+CREATE TABLE IF NOT EXISTS logs
+(
+id int auto_increment primary key,
+cookie varchar(1000),
+host varchar(250),
+referer varchar(250),
+user_agent varchar(250),
+query_string varchar(250),
+remote_addr varchar(100),
+size varchar(25),
+created datetime NOT null default NOW()
+);

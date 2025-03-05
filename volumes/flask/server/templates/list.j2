@@ -1,0 +1,50 @@
+Content-type: text/html
+
+<html>
+<head>
+<title>Videos {{ offset + 1}} - {{ offset + limit }}</title>
+<link rel="stylesheet" type="text/css" href="/static/th.css?v=2" media="">
+<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" media="">
+<script src="/static/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-primary fixed-top" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Title</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Forum</a>
+        </li>
+      </ul>
+    </div>
+    <div class="container-fluid justify-content-start" role="group" aria-label="Basic outlined example">
+{% if offset > 0 -%}
+<a class='btn btn-primary' href='/?offset={{ offset - limit }}&limit={{ limit }}'>{{ (offset - limit) + 1 }} - {{ offset }}</a>
+{% endif %}
+<a class='btn btn-primary' href='/?offset={{ next }}&limit={{ limit }}'>{{ next + 1 }} - {{ next + limit }}</a>
+displaying {{ offset + 1}} - {{ offset + limit }} out of {{ total }}
+    </div>
+  </div>
+</nav>
+<div class='thmain container'>
+<div class="d-flex flex-wrap">
+{% for result in list %}
+    <div class='imglink shadow bg-body-tertiary rounded'>
+        <a href='/?id={{ result.id }}' target=_blank>
+        {% if showimg >0 -%}
+        <img class='display_image' src='{{ result.thumbnail }}' alt='{{ result.alt }}' />
+        {% else %}
+	click for id {{ result.id }}
+        {% endif %}
+        </a>
+    </div>
+
+{% endfor %}
+</div>
+</div>
+</body>
+</html>

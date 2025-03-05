@@ -1,0 +1,16 @@
+Content-type: text/text
+
+#!ipxe
+
+ echo '--------   Cosmos CIFS Preflight (iPXE)  ----------'
+
+menu
+  item shell          Enter iPXE shell
+  choose --default shell --timeout 1000 target && goto \\${target}
+
+:shell
+echo unable to get build for serial number ${serial} : {{ FAILREASON }}
+shell
+set menu-timeout 0
+set submenu-timeout 0
+goto start

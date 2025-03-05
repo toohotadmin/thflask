@@ -1,0 +1,34 @@
+<!doctype html>
+<html lan="en">
+<head>
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">
+<link rel="stylesheet" type="text/css" href="/css/th.css?v=7" media="">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="">
+</head>
+<body>
+<div class="vh-100 d-flex justify-content-center align-items-center">
+  <div class=container style="width:420px">
+<div class=container>
+    {% if f is defined %}
+    <div class="alert alert-danger">{{m}}</div>
+    {% else %}
+    <div class="alert alert-info">{{m}}</div>
+    {% endif %}
+</div>
+<form class="form-floating" METHOD=POST>
+  <div class="mb-3 form-floating">
+    <input type="text" class="form-control" name="username" placeholder="Username">
+    <label for="username" class="form-label">Username</label>
+  </div>
+  <div class="mb-3 form-floating">
+    <input type="password" class="form-control" name="password" placeholder="Password">
+    <label for="password" class="form-label">Password</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <a href="/" class="btn btn-warning">Go Back</a>
+</form>
+  </div>
+</div>
+</body>
+</html>

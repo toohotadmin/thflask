@@ -1,0 +1,40 @@
+services:
+  web:
+    image: thflask:latest
+    restart: always
+    environment:
+      PUID: 1001
+      PGID: 1001
+      DATABASE_HOST: db
+      DATABASE_PASSWORD: "${MYSQL_ROOT}"
+      RAPID_KEY: "${RAPID_KEY}"
+    volumes:
+      - ./volumes/flask:/var/lib/flask
+      - ./volumes/scripts:/var/lib/scripts
+    ports:
+      - 8000:8000
+    healthcheck:
+        test: nc -zv localhost 8000 || exit 1
+        interval: 5s
+        timeout: 3s
+        retries: 5
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mariadb:10.4
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'toohot'
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT}"
+    ports:
+      - 3306:3306
+    command: --init-file /var/lib/mysql.init
+    volumes:
+      - ./volumes/data-mysql:/var/lib/mysql
+      - ./volumes/mysql.init:/var/lib/mysql.init
+    healthcheck:
+        test: mysql -uroot -h 127.0.0.1 --password=${MYSQL_ROOT} || exit 1
+        interval: 5s
+        timeout: 3s
+        retries: 5

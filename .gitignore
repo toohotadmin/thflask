@@ -1,0 +1,10 @@
+venv
+*.env
+*.log
+*.json
+*.html
+*.hold
+*.dump
+*.webm
+__pycache__
+volumes/data-mysql/*
