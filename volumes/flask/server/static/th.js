@@ -8,6 +8,9 @@ $.ajaxSetup({
     dataType:    "json"
 });
 
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 const qs = new URLSearchParams(window.location.search)
 var vstatus = qs.get('status')
 var sstring = qs.get('q')
@@ -131,7 +134,7 @@ $(function () {
         self.edit=ko.observable(false)
         self.searchtext=ko.observable()
         self.sitesearchtext=ko.observable()
-        self.sitesearch=ko.observable(false)
+        self.sitesearch=ko.observable(true)
         self.sitetext=ko.observable()
         // start title specific variables
         self.modDetail=ko.observable('videoDetail')
@@ -162,6 +165,7 @@ $(function () {
         self.qcount=ko.observable(0)
         self.total=ko.observable(0)
         self.vitems=ko.observableArray()
+        self.sitelist=ko.observableArray(['all'])
         self.thumbitems=ko.observableArray()
         self.offset=ko.computed(function(){
             return (limit*self.qcount())
@@ -234,6 +238,14 @@ $(function () {
                 self.isloading(false)
                 for(i in data){
                     self.vitems.push(new vItem(data[i]))
+                }
+            })
+        }
+    
+        self.loadSites=function(){
+            $.get('/api/v2/sites',function(data){
+                for(s in data){
+                    self.sitelist.push(data[s])
                 }
             })
         }
@@ -422,6 +434,7 @@ $(function () {
             self.alt('')
         }
         self.loadVideos()
+        self.loadSites()
         self.staticModal()
         return self
     };
