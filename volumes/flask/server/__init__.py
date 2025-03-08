@@ -1,10 +1,10 @@
 import logging
 from flask_restful import Api
 from flask_openapi3 import OpenAPI, Info
-
+RAPID_KEY=os.getenv('RAPID_KEY')
 info = Info(title='THAPI', version='BETA')
 app = OpenAPI(__name__,info=info)
-app.secret_key = 'TESTKeY'
+app.secret_key = RAPID_KEY
 api = Api(app)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)-8s %(message)s',
